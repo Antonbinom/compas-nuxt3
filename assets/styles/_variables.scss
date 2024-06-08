@@ -1,0 +1,34 @@
+@mixin button-hover($background: null, $text-color: null, $border-color: null, $transition-time: 0.3s,) {
+  &:hover {
+    transition: background, color, border-color,  ease $transition-time;
+    @if $background {
+      background: $background;
+    }
+    @if $text-color {
+      color: $text-color;
+    }
+    @if $border-color {
+      border-color: $border-color;
+    }
+  }
+}
+
+$transition-time: 0.3s;
+
+$black: #000000;
+$blue-dark: #1253A2;
+$white: #FFFFFF;
+$light-grey: #EEEFF1;
+$blue-bright: #0584FE;
+$off-white: #FBFCFD;
+$orange: #FD8301;
+$grey: #BCBCBC;
+$translucent-blue: #A6B7D478;
+$gradient-black: linear-gradient(90deg, #000000 30%, #1C2734 73%);
+$blue: #007AFF;
+$dark-grey-1: #090C10;
+$dark-grey-2: #0C1016;
+$blue-mid: #1353A2;
+$medium-grey: #8F8F8F;
+$red: #C74923;
+$light-grey-2: #D9D9D9;
