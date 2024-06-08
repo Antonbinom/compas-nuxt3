@@ -24,7 +24,7 @@
           <span>Проверить штрафы</span>
           <img src="@/public/images/arrow.svg" alt="Проверить штрафы" />
         </button>
-        <button @click="openModal" class="hero-buttons__about">
+        <button @click="isModalOpened = true" class="hero-buttons__about">
           <img src="@/public/images/youtube.svg" alt="О сервисе" />
           <span class="hero-buttons__about--text">О сервисе</span>
           <span class="hero-buttons__about--time">(1 мин. 20 сек)</span>
@@ -65,6 +65,8 @@ const inputs = ref<
   },
 ]);
 
+const isModalOpened: globalThis.Ref<boolean> = useOpenModal();
+
 const isFormValid = computed(() => inputs.value.every((input) => input.value));
 
 const submitedForm = ref<boolean>(false);
@@ -78,8 +80,6 @@ const submitForm = () => {
     setTimeout(() => (submitedForm.value = false), 5000);
   }
 };
-
-const openModal = () => {};
 </script>
 
 <style lang="scss" scoped>
