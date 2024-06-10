@@ -42,6 +42,7 @@ import { pages } from "~/data";
 .breadcrumb {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   padding: 20px 0;
   margin: 0;
   font-size: 13px;
@@ -52,6 +53,7 @@ import { pages } from "~/data";
 .breadcrumb li {
   display: flex;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .breadcrumb a:visited,
