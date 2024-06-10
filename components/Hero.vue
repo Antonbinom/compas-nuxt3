@@ -1,49 +1,53 @@
 <template>
-  <section class="hero">
-    <div class="hero-form">
-      <h1 class="hero-title">Проверьте штрафы и зарегестрируйтесь в 1 клик</h1>
-      <div class="hero-inputs">
-        <div
-          v-for="input in inputs"
-          :key="input.name"
-          :class="`hero-inputs__item ${input.name} ${input.status}`"
-        >
-          <label :for="input.name">{{ input.title }}</label>
-          <input
-            :id="input.name"
-            v-model="input.value"
-            @focus="input.status = ''"
-            @blur="input.status = input.value ? 'valid' : 'invalid'"
-            placeholder="Введите данные"
-            type="text"
-          />
+  <div class="container">
+    <section class="hero">
+      <div class="hero-form">
+        <h1 class="hero-title">
+          Проверьте штрафы и зарегестрируйтесь в 1 клик
+        </h1>
+        <div class="hero-inputs">
+          <div
+            v-for="input in inputs"
+            :key="input.name"
+            :class="`hero-inputs__item ${input.name} ${input.status}`"
+          >
+            <label :for="input.name">{{ input.title }}</label>
+            <input
+              :id="input.name"
+              v-model="input.value"
+              @focus="input.status = ''"
+              @blur="input.status = input.value ? 'valid' : 'invalid'"
+              placeholder="Введите данные"
+              type="text"
+            />
+          </div>
         </div>
-      </div>
-      <div class="hero-buttons">
-        <button @click="submitForm" class="hero-buttons__check">
-          <span>Проверить штрафы</span>
-          <img src="@/public/images/arrow.svg" alt="Проверить штрафы" />
-        </button>
-        <button @click="isModalOpened = true" class="hero-buttons__about">
-          <img src="@/public/images/youtube.svg" alt="О сервисе" />
-          <span class="hero-buttons__about--text">О сервисе</span>
-          <span class="hero-buttons__about--time">(1 мин. 20 сек)</span>
-        </button>
-      </div>
-      <p class="hero-policy">
-        Нажимая «Проверить штрафы» вы соглашаетесь с политикой обработки
-        персональных данных и принимаете оферту
-      </p>
+        <div class="hero-buttons">
+          <button @click="submitForm" class="hero-buttons__check">
+            <span>Проверить штрафы</span>
+            <img src="@/public/images/arrow.svg" alt="Проверить штрафы" />
+          </button>
+          <button @click="isModalOpened = true" class="hero-buttons__about">
+            <img src="@/public/images/youtube.svg" alt="О сервисе" />
+            <span class="hero-buttons__about--text">О сервисе</span>
+            <span class="hero-buttons__about--time">(1 мин. 20 сек)</span>
+          </button>
+        </div>
+        <p class="hero-policy">
+          Нажимая «Проверить штрафы» вы соглашаетесь с политикой обработки
+          персональных данных и принимаете оферту
+        </p>
 
-      <p
-        :style="{ color: submitedForm ? 'green' : 'transparent' }"
-        class="hero-form__notification"
-      >
-        Данные отправлены
-      </p>
-    </div>
-    <img class="hero-image" src="@/public/images/hero.png" alt="Hero" />
-  </section>
+        <p
+          :style="{ color: submitedForm ? 'green' : 'transparent' }"
+          class="hero-form__notification"
+        >
+          Данные отправлены
+        </p>
+      </div>
+      <img class="hero-image" src="@/public/images/hero.png" alt="Hero" />
+    </section>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -83,17 +87,21 @@ const submitForm = () => {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  @include container(1135px);
+}
 .hero {
   display: flex;
   justify-content: space-between;
-  padding-top: 79px;
-  padding-bottom: 35px;
+  padding-top: 139px;
+  padding-bottom: 10px;
   &-form {
-    width: 620px;
+    width: 563px;
     margin-right: 40px;
+    margin-bottom: 20px;
 
     &__notification {
-      margin-top: 20px;
+      margin: 0;
       color: green;
     }
   }
@@ -129,7 +137,7 @@ const submitForm = () => {
       }
 
       &.number {
-        width: 57%;
+        width: 56%;
       }
       &.state {
         width: 38%;
@@ -151,12 +159,16 @@ const submitForm = () => {
   }
   &-buttons {
     display: flex;
+    gap: 21px;
     &__check {
       display: flex;
       align-items: center;
+      justify-content: center;
+      height: 45px;
       padding: 11px 20px;
-      margin-right: 21px;
-      font-size: 14px;
+      font-size: 18px;
+      font-family: inherit;
+      line-height: 130%;
       color: $white;
       background: $blue-bright;
       @include button-hover($blue-dark);
@@ -172,8 +184,10 @@ const submitForm = () => {
 
       display: flex;
       align-items: center;
+      justify-content: center;
       padding: 11px 20px;
       border-radius: 7px;
+      font-family: inherit;
 
       border: 1px solid $blue-bright;
       &--text {
@@ -194,7 +208,96 @@ const submitForm = () => {
     color: $medium-grey;
   }
   &-image {
-    height: 335px;
+    max-height: 335px;
+    object-fit: contain;
+    display: inline-block;
+    width: 47%;
+  }
+}
+
+@media (max-width: 1199px) {
+  .hero {
+    &-title {
+      font-size: 32px;
+    }
+    &-form {
+      width: 500px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    padding-top: 100px;
+    padding-bottom: 20px;
+
+    &-title {
+      font-size: 32px;
+      text-align: center;
+    }
+    &-form {
+      order: 1;
+      width: auto;
+      margin: 0;
+    }
+    &-image {
+      margin-bottom: 30px;
+      width: auto;
+    }
+    &-buttons {
+      gap: 20px;
+      &__check,
+      &__about {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media (max-width: 767.99px) {
+  .container {
+    max-width: 100%;
+    padding-inline: 15px;
+  }
+  .hero {
+    &-title {
+      font-size: 32px;
+    }
+    &-buttons {
+      gap: 10px;
+      &__check {
+        width: auto;
+      }
+      &__about {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    &-title {
+      font-size: 28px;
+    }
+    &-inputs {
+      &__item {
+        &.number,
+        &.state,
+        &.certificate {
+          width: 100%;
+          margin-top: 0;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    &-buttons {
+      flex-wrap: wrap;
+      &__check {
+        width: 100%;
+      }
+    }
   }
 }
 </style>

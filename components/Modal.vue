@@ -33,14 +33,13 @@ const isModalOpened = useOpenModal();
 
 .modal-content {
   position: relative;
-  max-width: 960px;
-  margin: auto;
+  width: 90%;
   background-color: transparent;
 }
 
 iframe {
-  width: 960px;
-  height: 555px;
+  width: 100%;
+  height: 90vh;
 }
 
 .close {
@@ -48,5 +47,22 @@ iframe {
   float: right;
   font-size: 28px;
   cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  iframe {
+    width: 100%;
+    height: 100vh;
+  }
+}
+@media (max-width: 576px) {
+  .modal-content {
+    width: 100%;
+  }
+
+  iframe {
+    width: 100%;
+    height: 90vh;
+  }
 }
 </style>

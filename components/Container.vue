@@ -4,16 +4,15 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .container {
-  max-width: 1156px;
-  margin: 0px auto;
+  @include container(1164px);
 }
+
 @media (max-width: 767.98px) {
   .container {
-    margin: 0px;
-    padding: 0px 15px;
     max-width: 100%;
+    padding-inline: 15px;
   }
 }
 </style>

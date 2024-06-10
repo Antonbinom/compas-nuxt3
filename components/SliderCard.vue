@@ -6,7 +6,7 @@
         {{ document.description }}
       </p>
     </div>
-    <NuxtLink :to="document.url" class="documents-item__btn">
+    <NuxtLink :to="document.link" class="documents-item__btn">
       Перейти
     </NuxtLink>
   </div>
@@ -24,8 +24,9 @@ defineProps({
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 450px;
+    height: 458px;
     padding: 25px;
+    padding-top: 32px;
     border: 1px solid $light-grey;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.12);
@@ -55,5 +56,25 @@ defineProps({
       @include button-hover($blue-dark);
     }
   }
+}
+
+@media (max-width: 1024px) {
+  .documents {
+    &-title {
+      font-size: 32px;
+    }
+    &-item {
+      &__title {
+        font-size: 22px;
+      }
+      &__description {
+        font-size: 16px;
+      }
+    }
+  }
+}
+@media (max-width: 767.99px) {
+}
+@media (max-width: 576px) {
 }
 </style>

@@ -1,28 +1,34 @@
 <template>
-  <section class="documents">
-    <h2 class="documents-title">Документы</h2>
-    <div class="documents-slider">
-      <Swiper
-        :modules="[Navigation, Pagination, Scrollbar]"
-        :slides-per-view="3"
-        :space-between="35"
-        :scrollbar="{ draggable: true }"
-        :navigation="{ prevEl: '.arrow-left', nextEl: '.arrow-right' }"
-        :loop="true"
-        :pagination="{ clickable: true }"
-      >
-        <SwiperSlide v-for="(document, index) in documents" :key="index">
-          <SliderCard :document="document" />
-        </SwiperSlide>
-        <button class="arrow-left arrow">
-          <img src="~/public/images/arrow-left.svg" alt="arrow left" />
-        </button>
-        <button class="arrow-right arrow">
-          <img src="~/public/images/arrow-right.svg" alt="arrow right" />
-        </button>
-      </Swiper>
-    </div>
-  </section>
+  <div class="container">
+    <section class="documents">
+      <h2 class="documents-title">Документы</h2>
+      <div class="documents-slider">
+        <Swiper
+          :modules="[Navigation, Pagination, Scrollbar]"
+          :slides-per-view="1"
+          :breakpoints="{
+            576: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+          }"
+          :space-between="25"
+          :scrollbar="{ draggable: true }"
+          :navigation="{ prevEl: '.arrow-left', nextEl: '.arrow-right' }"
+          :loop="true"
+          :pagination="{ clickable: true }"
+        >
+          <SwiperSlide v-for="(document, index) in documents" :key="index">
+            <SliderCard :document="document" />
+          </SwiperSlide>
+          <button class="arrow-left arrow">
+            <img src="~/public/images/arrow-left.svg" alt="arrow left" />
+          </button>
+          <button class="arrow-right arrow">
+            <img src="~/public/images/arrow-right.svg" alt="arrow right" />
+          </button>
+        </Swiper>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -32,9 +38,10 @@ import { documents } from "~/data";
 
 <style lang="scss" scoped>
 $arrow-dimension: 80px;
-
+.container {
+  @include container(1148px);
+}
 .documents {
-  max-width: 1148px;
   padding: 40px 0 85px;
 
   &-title {
@@ -91,6 +98,32 @@ $arrow-dimension: 80px;
   .swiper-pagination-custom,
   .swiper-pagination-fraction {
     bottom: 0px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .documents {
+    padding-block: 20px;
+    &-title {
+      font-size: 32px;
+    }
+  }
+}
+@media (max-width: 767.98px) {
+  .container {
+    max-width: 100%;
+    padding-inline: 15px;
+  }
+}
+@media (max-width: 576px) {
+  .documents {
+    &-title {
+      font-size: 23px;
+    }
+  }
+  .swiper {
+    padding: 10px;
+    padding-bottom: 30px;
   }
 }
 </style>
