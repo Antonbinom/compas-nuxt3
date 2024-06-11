@@ -5,18 +5,32 @@
       <nav class="menu-nav" v-if="!viewport.isGreaterThan('mobileWide')">
         <ul>
           <li>
-            <NuxtLink to="/tariffs" class="menu-nav__item"> Тарифы </NuxtLink>
+            <NuxtLink
+              @click="isMenuOpened = false"
+              to="/tariffs"
+              class="menu-nav__item"
+            >
+              Тарифы
+            </NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/contacts" class="menu-nav__item">
+            <NuxtLink
+              @click="isMenuOpened = false"
+              to="/contacts"
+              class="menu-nav__item"
+            >
               Контакты
             </NuxtLink>
           </li>
         </ul>
       </nav>
       <div class="menu-buttons">
-        <button class="header-btn signin">Вход</button>
-        <button class="header-btn signup">Регистрация</button>
+        <button @click="isMenuOpened = false" class="header-btn signin">
+          Вход
+        </button>
+        <button @click="isMenuOpened = false" class="header-btn signup">
+          Регистрация
+        </button>
       </div>
     </div>
   </transition>
